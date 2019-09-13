@@ -1,0 +1,30 @@
+MediPi Concentrator Commit History
+============================
+
+Changes since MediPiConcentrator_v1.0.0-PILOT-X-1
+
+- Addition of MediPi Upload encryption to messages for: uploads from patient device to concentrator, downloads from concentrator to patient device, patient alerts/messages from the clinical API
+- Addition of patient messaging service to pass through encrypted and signed messages from clinical systems
+- Addition of public certificate server for clinical systems to request public certificates for signing messages to patients
+- Addition of patient data request service for clinical systems to get data for all patients from a patient group
+- Update of the code base to make sure that dates and times are handled and persisted to the postgres DB as UTC  
+- Addition of units to recording device attributes
+-Addition of schedule effective time and scheldule expiry time to recording device data to allow categorisation within schedules
+- Addition of functionality to automatically save details of new recording device types and recording device attributtes
+- General refactoring and addition of comments and improved exception handling
+
+Changes since MediPiConcentrator_v1.0.1-PILOT-20160911-1
+- Externalise all the properties into 2 properties files: application.properties and MediPiConcentrator.properties
+- correct the download to file of the encrypted incoming data uploads
+- removal of debug text
+- Correction of RecordingDeviceData datavalue table size
+- validatinon on incoming alert messages that the concentrator serves a certificate for that patient
+
+Changes since MediPiConcentrator_v1.0.3-PILOT-20170103-1
+- Addition of a back-off time period - Period in milliseconds which allows the database time to save any new incoming data and will not allow it to be queried until after this period has expired. When 3rd party systems (including the Clinical System) request data from MediPi Concentrator it will exlude data for the latest period to allow all data that might be in the process of being persisted in the database to be saved.
+
+MediPiConcentrator 1.0.6
+- Removed logging which is too verbose
+- Change to allow MediPi Concentrator to push messages containing the patient's UUID only to Slack upon receipt of patient data
+- Correct sending of script messaging for duplicate and non writing submissions to the DB
+- Refactored the direct messaging to separate messaging from the CLinical server into 2 types: SimpleMessages and Alerts. New HTTP interface created for the SimpleMessages so that each type of message can be handled type specifically

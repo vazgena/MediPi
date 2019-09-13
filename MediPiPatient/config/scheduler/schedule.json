@@ -1,0 +1,1 @@
+[{"uuid":"18c70ecf-0e89-4a87-bb17-47ebb45b2a37","eventType":"SCHEDULED","time":1487635200.000000000,"repeat":1440,"deviceSched":["Scale","BloodPressureCuffSitting","Oximeter","Thermometer","BloodPressureCuffStanding","HeartFailureQuestionnaire","COPDQuestionnaire","DiabetesQuestionnaire","Transmitter"]}]
